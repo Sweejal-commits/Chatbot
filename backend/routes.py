@@ -1,7 +1,7 @@
 from fastapi import APIRouter
 from backend.models import ChatRequest
 from backend.responses import responses
-from backend.nlp import process_query
+from backend.nlp import detect_intent,process_query
 
 router = APIRouter()
 @router.get("/chat")
