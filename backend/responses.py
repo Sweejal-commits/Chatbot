@@ -9,7 +9,7 @@ responses={
         "faculty": "our college have ",
         "clubs":"Clubs run the show!🎤 Cultural, sports, social activities and more find your place! Check details here https://www.imperial.edu.in/campus-life/clubs",
         "commitees":"Get involved!🏅 The student council is always looking for enthusiastic members.",
-        "library hours":"📖Books, Peace and Knowledge! Visit the library from 10 AM to 4 PM"
+        "library hours":"📖Books, Peace and Knowledge! Visit the library from 10 AM to 4 PM",
         "Canteen hours":"🍕 Hungry! Breakfast time:8:30 AM to 8:45 AM, lunch is between:1:15 PM to 2:00 PM, for dinner: 7:30 PM to 8:00 PM",
         "hostel facilities":"🏡 Hostel life is fun! The details are available with the warden.",
         #transport,placement,events,attendance,
