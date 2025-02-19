@@ -5,7 +5,7 @@ from rapidfuzz import process
 nlp = spacy.load("en_core_web_sm")
 
 file_path = os.path.join(os.path.dirname(__file__),"intents.json")
-with open ("intents.json","r") as file:
+with open ("intents.json","r", encoding="utf-8") as file:
     intents = json.load(file)
 
 def process_query(query:str):
