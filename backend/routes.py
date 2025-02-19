@@ -12,8 +12,9 @@ async def get_chat(query: str=""):
         return{"bot_response":"Hello! How can i assist you today?"}
     if query in responses:
         return{"bot_response":responses[query]}
-    bot_response = process_query(query)
-    return {"bot_response":responses[query]}
+    intent = detect_intent(query)
+    #bot_response = process_query(query)
+    return {"bot_response":responses.get(intent,"I'm not sure how to respond.")}
 
 @router.post("/chat")
 async def post_chat(request:ChatRequest):
@@ -24,7 +25,9 @@ async def post_chat(request:ChatRequest):
     #check predifined responses
     if query in responses:
         return{"bot_response":responses[query]}
-#use nlp if no match
-        bot_response =process_query(query)
-        return {"bot_response":bot_responses}
+#use nlp intent dectetion
+    intent = detect_intent(query)
+        #bot_response = detect_intent(query)
+    return {"bot_response":responses.get(intent,"I'm not sure how to respond.")}
+
 
