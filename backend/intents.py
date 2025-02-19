@@ -1,4 +1,4 @@
-{
+intents={
     "courses":[
         "Can you tell me about the courses","What courses are provided"
     ],

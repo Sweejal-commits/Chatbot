@@ -1,18 +1,8 @@
 import spacy
-import json
-import os
 from rapidfuzz import process
+from backend.intents import intents
+
 nlp = spacy.load("en_core_web_sm")
-
-BASE_DIR= os.path.dirname(os.path.abspath(__file__))
-file_path = os.path.join(BASE_DIR,"intents.json")
-
-try:
-    with open ("intents.json","r", encoding="utf-8") as file:
-     intents = json.load(file)
-except FileNotFoundError:
-    print(f"Error:couldn not find {file_path}")     
-    intents ={}
 
 def process_query(query:str):
     """Process user input to extract keywords using spaCy"""
