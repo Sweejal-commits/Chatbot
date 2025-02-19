@@ -3,8 +3,8 @@ import json
 import os
 from rapidfuzz import process
 nlp = spacy.load("en_core_web_sm")
-
-file_path = os.path.join(os.path.dirname(__file__),"intents.json")
+BASE_DIR= os.path.dirname(os.path.abspath(__file__))
+file_path = os.path.join(BASE_DIR,"intents.json")
 with open ("intents.json","r", encoding="utf-8") as file:
     intents = json.load(file)
 
