@@ -11,7 +11,7 @@ def process_query(query:str):
     return " ".join(keywords)
 
 def detect_intent(user_input:str):  
-    """Use fuzzy matching to find the best intent from intents.json"""
+    """Use fuzzy matching to find the best intent from intents.py"""
     processed_input = process_query(user_input)
     best_intent = None
     best_score = 0
