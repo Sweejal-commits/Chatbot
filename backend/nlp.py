@@ -7,7 +7,7 @@ nlp = spacy.load("en_core_web_sm")
 def process_query(query:str):
     """Process user input to extract keywords using spaCy"""
     doc = nlp(query.lower())
-    keywords= [token.lemma_ for token in doc if token.is_alpha]
+    keywords= [token.lemma_ for token in doc if token.is_stop]
     return " ".join(keywords)
 
 def detect_intent(user_input:str):  

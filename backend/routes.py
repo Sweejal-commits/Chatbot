@@ -2,26 +2,25 @@ from fastapi import APIRouter
 from backend.models import ChatRequest
 from backend.responses import responses
 from backend.nlp import detect_intent,process_query
+# from transformers import GPT2LMHeadModel, GPT2Tokenizer
+# import torch 
 
-router = APIRouter()
+# router = APIRouter()
+# model_name = "gpt2"
+# tokenizer =  GPT2Tokenizer. from_pretrained(model_name)
+# model = GPT2LMHeadModel. from_pretrained(model_name)
+
 @router.get("/chat")
 async def get_chat(query: str=""):
     """Handles GET requests (query parameters)"""
     query= query.lower().strip()
     if not query:
         return{"bot_response":"Hello! How can i assist you today?"}
-    best_match, score = process.extractOne(query, responses.keys())
-    if score < 60:
-        return{"bot_response":responses[best_match]}
+    if query in responses:
+        return{"bot_response":responses[query]}
     intent = detect_intent(query)
+    #bot_response = process_query(query)
     return {"bot_response":responses.get(intent,"I'm not sure how to respond.")}
-
-    # if query in responses:
-    #     return{"bot_response":responses[query]}
-    # intent = detect_intent(query)
-    # #bot_response = process_query(query)
-    # return {"bot_response":responses.get(intent,"I'm not sure how to respond.")}
-
 @router.post("/chat")
 async def post_chat(request:ChatRequest):
     """Handles POST requests (JSON body)"""
@@ -33,7 +32,7 @@ async def post_chat(request:ChatRequest):
         return{"bot_response":responses[query]}
 #use nlp intent dectetion
     intent = detect_intent(query)
-        #bot_response = detect_intent(query)
+    # bot_response = detect_intent(query)
     return {"bot_response":responses.get(intent,"I'm not sure how to respond.")}
 
 
