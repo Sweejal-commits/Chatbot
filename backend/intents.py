@@ -1,7 +1,5 @@
 intents={
-    "courses":[
-        "Can you tell me about the courses","What courses are provided"
-    ],
+    
     "fee":[
          "What's the fee", "Fee structure","my next payment"
     ],
