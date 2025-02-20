@@ -5,10 +5,8 @@ from backend.nlp import detect_intent,process_query
 # from transformers import GPT2LMHeadModel, GPT2Tokenizer
 # import torch 
 
- router = APIRouter()
-# model_name = "gpt2"
-# tokenizer =  GPT2Tokenizer. from_pretrained(model_name)
-# model = GPT2LMHeadModel. from_pretrained(model_name)
+router = APIRouter()
+
 
 @router.get("/chat")
 async def get_chat(query: str=""):
