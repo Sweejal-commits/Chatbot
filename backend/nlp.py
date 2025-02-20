@@ -12,7 +12,7 @@ def process_query(query:str):
 
 def detect_intent(user_input:str):  
     """Use fuzzy matching to find the best intent from intents.py"""
-    user_input= user_input.lower():
+    user_input= user_input.lower()
     detected_intent = None
     for intent, data in intents_responses.items():
         if any (pattern in user_input for pattern in data["patterns"]):
