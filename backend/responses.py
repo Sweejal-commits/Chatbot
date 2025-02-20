@@ -16,3 +16,6 @@ responses={
         #results,faculty,clubs&commity, library hours, canteen hours 
         "unknown":"I'm sorry, I don't understand it, can you rephrase it?"
         }
+def get_response(intent):
+    """Returns response based on intent"""
+    return reponses.get(intent,"Sorry,I didn't understand that.")
