@@ -1,6 +1,6 @@
 import spacy
 from rapidfuzz import process,fuzz
-from backend.intents import intents
+from backend.responses import intents_responses
 
 nlp = spacy.load("en_core_web_sm")
 
@@ -14,7 +14,7 @@ def detect_intent(user_input:str):
     """Use fuzzy matching to find the best intent from intents.py"""
     user_input= user_input.lower():
     detected_intent = None
-    for intent, data in intents_response.items():
+    for intent, data in intents_responses.items():
         if any (pattern in user_input for pattern in data["patterns"]):
             detected_intent = intent
             break

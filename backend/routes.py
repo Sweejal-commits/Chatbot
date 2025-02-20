@@ -1,6 +1,6 @@
 from fastapi import APIRouter
 from backend.models import ChatRequest
-from backend.responses import responses
+from backend.responses import intents_responses
 from backend.nlp import detect_intent,process_query
 # from transformers import GPT2LMHeadModel, GPT2Tokenizer
 # import torch 
