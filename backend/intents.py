@@ -1,5 +1,10 @@
 intents={
-    
+    "hello":[
+        "hii","what's up"
+    ],
+    "courses":[
+        "What are the courses","give me courses"
+    ],
     "fee":[
          "What's the fee", "Fee structure","my next payment"
     ],
