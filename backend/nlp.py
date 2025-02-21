@@ -13,30 +13,18 @@ def process_query(query:str):
 
 def detect_intent(user_input:str):  
     """Identify the best matching intent using spaCy similarity."""
-    # user_input= user_input.lower()
-    # detected_intent = None
-    # for intent, data in intents_responses.items():
-    #     if any (pattern in user_input for pattern in data["patterns"]):
-    #         detected_intent = intent
-    #         break
-    #     return detected_intent
     processed_input = nlp(user_input.lower())
     best_intent= "unknown"
     best_score =0.0
     for intent, phrases in intents.items():
          for phrase in phrases:
              phrase_doc = nlp(phrase.lower())
-            #  fuzzy_score = fuzz.ratio(user_input.lower(),phrase.lower())/ 100.0
              similarity = processed_input.similarity(phrase_doc)
-            #  final_score = max(fuzzy_score,similarity_score)
+            
              if similarity > best_score and similarity >0.6:
                  best_intent= intent
                  best_score= similarity
          return best_intent
-    #          if similarity > best_score and similarity >0.6:
-    #              best_intent= intent
-    #              best_score= similarity
-    # return best_intent
      
 def get_response(user_input:str):
     """Get response based on identified intent"""
