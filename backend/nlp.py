@@ -29,7 +29,7 @@ def detect_intent(user_input:str):
              fuzzy_score = fuzz.ratio(user_input.lower(),phrase.lower())/ 100.0
              similarity_score = processed_input.similarity(phrase_doc)
              final_score = max(fuzzy_score,similarity_score)
-             if final_score > best_score and final_score >0.7
+             if final_score > best_score and final_score >0.7:
                  best_intent= intent
                  best_score= final_score
          return best_intent
