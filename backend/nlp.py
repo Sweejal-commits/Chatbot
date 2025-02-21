@@ -1,6 +1,7 @@
 import spacy
-from rapidfuzz import process,fuzz
+# from rapidfuzz import process,fuzz
 from backend.intents import intents
+from backend.responses import responses
 
 nlp = spacy.load("en_core_web_sm")
 
@@ -21,11 +22,26 @@ def detect_intent(user_input:str):
     #     return detected_intent
 
     processed_input = process_query(user_input)
-    best_intent = None
-    best_score = 0
+    # best_intent = None
+    # best_score = 0
     for intent, phrases in intents.items():
-        match, score, _=process.extractOne(user_input,phrases,score = fuzz.partial_ratio)
-        if score > best_score:
-            best_match = intent
-            best_score = score
-    return best_match if best_score > 50 else "unknown"  
+        for phrase in phrases:
+            processed_phrase = process_query(phrase)
+            if processed_phrase in processed_input or processed_input in processed_phrase:
+                return intent
+        return "unknown"
+    #     match, score, _=process.extractOne(user_input,phrases,score = fuzz.partial_ratio)
+    #     if score > best_score:
+    #         best_match = intent
+    #         best_score = score
+    # return best_match if best_score > 50 else "unknown"  
+def get_response(user_input:str):
+    """Get response based on identified intent"""
+    intent = detect_intent(user_input)
+    if intent in responses:
+        response = responses[intent]
+        return response if isinstance(response,str) else response[0]
+    return response["unknown"]
+if __name__=="__main__":
+    user_input = input("You:")
+    print("Bot:", get_response(user_input))
