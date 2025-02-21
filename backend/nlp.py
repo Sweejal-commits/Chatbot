@@ -20,10 +20,10 @@ def detect_intent(user_input:str):
          for phrase in phrases:
              phrase_doc = nlp(phrase.lower())
              similarity = processed_input.similarity(phrase_doc)
-             if similarity > best_score and similarity > 0.5:
+             if similarity > best_score and similarity > 0.4:
                  best_intent= intent
                  best_score= similarity
-    return best_intent if best_score > 0.4 else "fallback"
+    return best_intent if best_score > 0.3 else "fallback"
 def get_response(user_input:str):
     """Get response based on identified intent"""
     intent = detect_intent(user_input)

@@ -23,11 +23,11 @@ intents={
     "clubs":[
          "What clubs available","clubs detail","how many clubs"
     ],
-    "library hour":[
-        "when is library open","library timing"
+    "library timings":[
+        "when is library open","library timing","what are library hours","library open time","until what time is the library open"
     ],
     "canteen hour":[
-        "canteen timing","brakfast time","lunch","dinner"
+        "canteen timing","brakfast time","lunch","dinner","when does the canteen open","what time is breakfast in the canteen","when is lunch served","dinner time in the canteen","canteen open hours"
     ],
     "hostel facilities":[
         "where can i stay", "hostel","hostel details"
