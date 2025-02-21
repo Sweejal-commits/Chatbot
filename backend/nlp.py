@@ -1,5 +1,5 @@
 import spacy
-# from rapidfuzz import process,fuzz
+from rapidfuzz import fuzz
 from backend.intents import intents
 from backend.responses import responses
 
@@ -26,12 +26,30 @@ def detect_intent(user_input:str):
     for intent, phrases in intents.items():
          for phrase in phrases:
              phrase_doc = nlp(phrase.lower())
-             similarity = processed_input.similarity(phrase_doc)
-             if similarity > best_score and similarity >0.6:
+             fuzzy_score = fuzz.ratio(user_input.lower(),phrase.lower())/ 100.0
+             similarity_score = processed_input.similarity(phrase_doc)
+             final_score = max(fuzzy_score,similarity_score)
+             if final_score > best_score and final_score >0.7
                  best_intent= intent
-                 best_score= similarity
-    return best_intent
-    # """Identify the best matching intent using """
+                 best_score= final_score
+         return best_intent
+    #          if similarity > best_score and similarity >0.6:
+    #              best_intent= intent
+    #              best_score= similarity
+    # return best_intent
+     
+def get_response(user_input:str):
+    """Get response based on identified intent"""
+    intent = detect_intent(user_input)
+    if intent in responses:
+        response = responses[intent]
+        return response if isinstance(response,str) else response[0]
+    return response["unknown"]
+# if __name__=="__main__":
+#     user_input = input("You:")
+#     print("Bot:", get_response(user_input))
+
+ # """Identify the best matching intent using """
     # # (processed_input = process_query(user_input)
     # # best_intent = None
     # # best_score = 0
@@ -45,14 +63,4 @@ def detect_intent(user_input:str):
     #     if score > best_score:
     #         best_match = intent
     #         best_score = score
-    # return best_match if best_score > 50 else "unknown"  
-def get_response(user_input:str):
-    """Get response based on identified intent"""
-    intent = detect_intent(user_input)
-    if intent in responses:
-        response = responses[intent]
-        return response if isinstance(response,str) else response[0]
-    return response["unknown"]
-# if __name__=="__main__":
-#     user_input = input("You:")
-#     print("Bot:", get_response(user_input))
+    # return best_match if best_score > 50 else "unknown"
