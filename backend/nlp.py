@@ -1,5 +1,5 @@
 import spacy
-from rapidfuzz import fuzz
+# from rapidfuzz import fuzz
 from backend.intents import intents
 from backend.responses import responses
 
@@ -26,12 +26,12 @@ def detect_intent(user_input:str):
     for intent, phrases in intents.items():
          for phrase in phrases:
              phrase_doc = nlp(phrase.lower())
-             fuzzy_score = fuzz.ratio(user_input.lower(),phrase.lower())/ 100.0
-             similarity_score = processed_input.similarity(phrase_doc)
-             final_score = max(fuzzy_score,similarity_score)
-             if final_score > best_score and final_score >0.7:
+            #  fuzzy_score = fuzz.ratio(user_input.lower(),phrase.lower())/ 100.0
+             similarity = processed_input.similarity(phrase_doc)
+            #  final_score = max(fuzzy_score,similarity_score)
+             if similarity > best_score and similarity >0.6:
                  best_intent= intent
-                 best_score= final_score
+                 best_score= similarity
          return best_intent
     #          if similarity > best_score and similarity >0.6:
     #              best_intent= intent
